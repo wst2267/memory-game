@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="style.css">
+   <!-- <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/game.css"> -->
+</head>
+<body>
+
+<header class="top-bar">
+  <div>Level <span id="level"></span></div>
+  <div>
+    <button onclick="goLeaderboard()">Leaderboard</button>
+    <button onclick="openTheme()">🎨 Theme</button>
+    <button onclick="logout()">Logout</button>
+    ⏱ <span id="timer"></span>
+  </div>
+</header>
+
+<main class="game-container">
+  <div id="board" class="board"></div>
+</main>
+
+<div id="overlay" class="overlay hidden">
+  <div class="popup">
+    <h2 id="result-title"></h2>
+  </div>
+</div>
+
+<div id="theme-modal" class="overlay hidden">
+  <div class="popup">
+    <h3>🎨 เลือก Theme</h3>
+    <div id="theme-list"></div>
+    <button onclick="closeTheme()">Close</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
