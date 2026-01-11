@@ -28,14 +28,14 @@ const themeConfig = {
   fruits: {
     unlockAt: 1,
     images: [
-      "assets/animals/apple.png",
-      "assets/animals/banana.png",
-      "assets/animals/lemon.png",
-      "assets/animals/passionfruit.png",
-      "assets/animals/pear.png",
-      "assets/animals/pineapple.png",
-      "assets/animals/strawberry.png",
-      "assets/animals/watermalon.png"
+      "assets/fruits/apple.png",
+      "assets/fruits/banana.png",
+      "assets/fruits/lemon.png",
+      "assets/fruits/passionfruit.png",
+      "assets/fruits/pear.png",
+      "assets/fruits/pineapple.png",
+      "assets/fruits/strawberry.png",
+      "assets/fruits/watermalon.png"
     ]
   }
 };
