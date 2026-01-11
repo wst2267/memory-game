@@ -22,20 +22,20 @@ const themeConfig = {
       "assets/animals/panda.png",
       "assets/animals/parrot.png",
       "assets/animals/penguin.png",
-      "assets/animals/chicken.png"
+      "assets/animals/pig.png"
     ]
   },
   fruits: {
     unlockAt: 1,
     images: [
-      "assets/animals/elephant.png",
-      "assets/animals/giraffe.png",
-      "assets/animals/hippo.png",
-      "assets/animals/monkey.png",
-      "assets/animals/panda.png",
-      "assets/animals/parrot.png",
-      "assets/animals/penguin.png",
-      "assets/animals/chicken.png"
+      "assets/animals/apple.png",
+      "assets/animals/banana.png",
+      "assets/animals/lemon.png",
+      "assets/animals/passionfruit.png",
+      "assets/animals/pear.png",
+      "assets/animals/pineapple.png",
+      "assets/animals/strawberry.png",
+      "assets/animals/watermalon.png"
     ]
   }
 };
