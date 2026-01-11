@@ -37,6 +37,19 @@ const themeConfig = {
       "assets/fruits/strawberry.png",
       "assets/fruits/watermalon.png"
     ]
+  },
+  magic: {
+    unlockAt: 1,
+    images: [
+      "assets/magic/001-magician.png",
+      "assets/magic/002-wizard.png",
+      "assets/magic/003-magician-1.png",
+      "assets/magic/004-priest.png",
+      "assets/magic/005-wizard-1.png",
+      "assets/magic/006-wizard-2.png",
+      "assets/magic/007-wizard-3.png",
+      "assets/magic/008-dark-magic.png"
+    ]
   }
 };
 

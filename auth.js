@@ -19,6 +19,16 @@ async function login() {
 }
 
 async function register() {
+  var username = usernameInput();
+  if (isNullOrEmpty(username)) {
+    showMsg("username invalid!", false);
+    return;
+  }
+  if (isNullOrEmpty(passwordInput())) {
+    showMsg("password null", false);
+    return;
+  }
+
   const res = await fetch(API + "/auth/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -41,4 +51,8 @@ function showMsg(msg, ok = false) {
   const el = document.getElementById("msg");
   el.textContent = msg;
   el.style.color = ok ? "#4ade80" : "#f87171";
+}
+
+function isNullOrEmpty(value) {
+  return value === null || value === undefined || value === '';
 }
