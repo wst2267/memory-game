@@ -36,45 +36,48 @@ async function login() {
     msg.style.color = "red";
     msg.textContent = "Error connecting to server";
   } finally {
-    // ซ่อน overlay และ enable ปุ่ม
+    // ซ่อน overlay
     overlay.style.display = "none";
   }
-
-  // const res = await fetch(API + "/auth/login", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({ username, password })
-  // });
-
-  // const data = await res.json();
-  // if (data.error) return showMsg(data.error);
-
-  // localStorage.setItem("token", data.token);
-  // localStorage.setItem("level", data.level);
-  // location.href = "play.html";
 }
 
 async function register() {
-  var username = usernameInput();
+  const overlay = document.getElementById("loadingOverlay");
+  const username = usernameInput();
+  const password = passwordInput();
   if (isNullOrEmpty(username)) {
     showMsg("username invalid!", false);
     return;
   }
-  if (isNullOrEmpty(passwordInput())) {
+  if (isNullOrEmpty(password)) {
     showMsg("password null", false);
     return;
   }
 
-  const res = await fetch(API + "/auth/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: usernameInput(),
-      password: passwordInput()
-    })
-  });
+  overlay.style.display = "flex";
 
-  showMsg("สมัครสำเร็จ 🎉", true);
+  try {
+    const res = await fetch(API + "/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      showMsg("สมัครสำเร็จ 🎉", true);
+    } else {
+      showMsg(data.message || "สมัครไม่สำเร็จ ❌", false);
+    }
+  } catch (err) {
+    showMsg("เกิดข้อผิดพลาดกับ server ❌", false);
+    console.error(err);
+  }
+  finally {
+    // ซ่อน overlay
+    overlay.style.display = "none";
+  }
 }
 
 function usernameInput() {

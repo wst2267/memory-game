@@ -1,77 +1,196 @@
-.center {
-  min-height: 100vh;
+/* ===============================
+   Body + Background
+================================= */
+body.center {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  color: #eee;
+  background: #1a1a1a; /* fallback สีดำเข้ม */
 }
 
-.login-box {
-  background: #020617;
-  padding: 24px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 320px;
-  text-align: center;
+/* Background zoom */
+#bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('images/background.jpg') center/cover no-repeat;
+  z-index: -2;
+  animation: bgZoom 30s ease-in-out infinite alternate;
 }
 
-.login-box h2 {
-  margin-bottom: 16px;
+/* Overlay */
+#bg::after {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
 }
 
-.login-box input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 8px;
-  border: none;
-  background: #38bdf8;
-  color: black;
-  font-weight: bold;
-}
-
-.login-box button.secondary {
-  background: #334155;
-  color: white;
-}
-
-#msg {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-/* Overlay ดำโปร่ง */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* ===============================
+   Particle Canvas
+================================= */
+#particles {
+  position: absolute;
+  top:0; left:0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  z-index: -1; /* อยู่ใต้ login box */
 }
 
-/* Spinner หมุน */
+/* ===============================
+   Login Box
+================================= */
+.login-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(30,30,30,0.9);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+  width: 320px;
+  text-align: center;
+  transform: scale(0);
+  animation: popup 0.6s forwards;
+}
+
+.login-box h2.neon-text {
+  font-family: 'Orbitron', sans-serif; /* หรือ Press Start 2P */
+  font-size: 36px;
+  
+  /* Gradient Rainbow */
+  background: linear-gradient(90deg, #ff0040, #fffd00, #00ff99, #00d4ff, #ff00ff);
+  background-size: 500% 100%;
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* ห้ามกำหนด color ตรง ๆ */
+  
+  /* Neon glow */
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #ff00ff,
+    0 0 80px #ff0040;
+  
+  /* Rainbow animation */
+  animation: rainbowText 8s linear infinite;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #555;
+  background: #222;
+  color: #eee;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+input:focus {
+  border-color: #0ff;
+  box-shadow: 0 0 8px #0ff;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 12px;
+  background: #0ff;
+  color: #111;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background: #00d4d4;
+  transform: translateY(-2px);
+}
+
+button.secondary {
+  background: #555;
+}
+
+button.secondary:hover {
+  background: #777;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index: 1000;
+  opacity:0;
+  animation: fadeIn 0.3s forwards;
+}
+
 .spinner {
-  border: 8px solid #f3f3f3; /* สีพื้นหลัง */
-  border-top: 8px solid #3498db; /* สีหมุน */
+  border: 8px solid rgba(255,255,255,0.2);
+  border-top: 8px solid #0ff;
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite, pulse 1.5s infinite;
+}
+
+/* ===============================
+   Animations
+================================= */
+@keyframes popup {
+  0% { transform: scale(0); opacity:0; }
+  60% { transform: scale(1.1); opacity:1; }
+  100% { transform: scale(1); }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes pulse {
+  0%,100%{ transform: scale(1) rotate(0deg);}
+  50% { transform: scale(1.2) rotate(180deg);}
+}
+
+@keyframes fadeIn { to {opacity:1;} }
+
+/* Background zoom */
+@keyframes bgZoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Messages */
+#msg {
+  min-height: 20px;
+  font-weight: bold;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+@keyframes rainbowText {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
 }
