@@ -4,18 +4,54 @@ async function login() {
   const username = usernameInput();
   const password = passwordInput();
 
-  const res = await fetch(API + "/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password })
-  });
+  const overlay = document.getElementById("loadingOverlay");
 
-  const data = await res.json();
-  if (data.error) return showMsg(data.error);
+  overlay.style.display = "flex";
+  msg.textContent = "";
 
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("level", data.level);
-  location.href = "play.html";
+  try {
+    const response = await fetch(API + "/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    console.log("data: ", data)
+
+    if (response.ok) {
+      msg.style.color = "green";
+      msg.textContent = "Login successful!";
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("level", data.level);
+      location.href = "play.html";
+    } else {
+      msg.style.color = "red";
+      msg.textContent = data.message || "Login failed";
+    }
+
+  } catch (err) {
+    msg.style.color = "red";
+    msg.textContent = "Error connecting to server";
+  } finally {
+    // ซ่อน overlay และ enable ปุ่ม
+    overlay.style.display = "none";
+  }
+
+  // const res = await fetch(API + "/auth/login", {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify({ username, password })
+  // });
+
+  // const data = await res.json();
+  // if (data.error) return showMsg(data.error);
+
+  // localStorage.setItem("token", data.token);
+  // localStorage.setItem("level", data.level);
+  // location.href = "play.html";
 }
 
 async function register() {
