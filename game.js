@@ -172,6 +172,13 @@ function startTimer() {
   countdown = setInterval(() => {
     timer--;
     timerEl.textContent = timer;
+
+    if (timer <= 10) {
+      timerEl.classList.add("warning");
+    } else {
+      timerEl.classList.remove("warning");
+    }
+
     if (timer <= 0) lose();
   }, 1000);
 }

@@ -126,3 +126,106 @@ body {
   text-align: center;
 }
 
+.btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px; /* เล็กลงสำหรับมือถือ */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  margin-right: 5px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 8px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* ปรับปุ่มเมื่อหน้าจอเล็ก */
+@media (max-width: 480px) {
+  .btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #1e1f29;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.top-bar div:first-child { /* สำหรับ Level */
+  font-size: 16px; /* ขนาดปกติบน desktop */
+  font-weight: 500;
+}
+
+#level {
+  font-weight: 700; /* ตัวเลขเด่นขึ้น */
+  color: #ffd700; /* ตัวเลขสีทองเด่น */
+}
+
+/* ปรับตัวอักษรเมื่อหน้าจอเล็ก */
+@media (max-width: 480px) {
+  .top-bar div:first-child {
+    font-size: 14px;
+  }
+
+  #level {
+    font-size: 16px; /* ตัวเลขใหญ่ขึ้นหน่อย แต่พอดีมือถือ */
+  }
+}
+
+.btn-logout {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b); /* gradient สีแดงสวย */
+  color: #fff;
+}
+
+.btn-logout:hover {
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 8px rgba(0,0,0,0.15);
+}
+
+.btn-logout:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#timer {
+  font-size: 1.5rem; /* ปรับให้เหมาะกับมือถือ */
+  font-weight: bold;
+  padding: 0.2em 0.5em;
+  border-radius: 8px;
+  /* background-color: #4caf50; */
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* เวลาเหลือน้อย */
+#timer.warning {
+  background-color: #f44336; /* แดง */
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.3; }
+}
+
+
+
+
